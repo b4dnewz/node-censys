@@ -1,6 +1,6 @@
 {
   "name": "censys.io",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Javascript wrapper for Censys.io API",
   "homepage": "https://github.com/b4dnewz/node-censys",
   "author": {
