@@ -1,3 +1,4 @@
+const path = require('path');
 module.exports = [
   {
     entry: './lib/index.js',
@@ -6,7 +7,8 @@ module.exports = [
       library: 'Censys',
       libraryTarget: 'umd',
       libraryExport: 'default',
-      filename: './build/censys.web.js'
+      filename: 'censys.web.js',
+      path: path.resolve(__dirname, 'build')
     }
   },
   {
@@ -16,7 +18,8 @@ module.exports = [
       library: 'Censys',
       libraryTarget: 'umd',
       libraryExport: 'default',
-      filename: './build/censys.js'
+      filename: 'censys.js',
+      path: path.resolve(__dirname, 'build')
     }
   }
 ];

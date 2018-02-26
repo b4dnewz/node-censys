@@ -1,6 +1,6 @@
 {
   "name": "censys.io",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Javascript wrapper for Censys.io API",
   "homepage": "https://github.com/b4dnewz/node-censys",
   "author": {
@@ -32,7 +32,7 @@
     "nsp": "^3.2.1",
     "prettier": "^1.10.2",
     "regenerator-runtime": "^0.11.1",
-    "webpack": "^4.0.0"
+    "webpack-cli": "^2.0.9"
   },
   "scripts": {
     "prepublish": "nsp check",
