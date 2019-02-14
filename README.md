@@ -1,8 +1,10 @@
 # node-censys
 
+> An unofficial javascript wrapper for Censys.io API
+
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 
-> An unofficial javascript wrapper for Censys.io API
+If you are interested to see the official documentation visit the [Censys.io](https://censys.io/api) API page.
 
 ## Installation
 
