@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+/* eslint-disable no-console */
+
 const { version } = require('../package.json');
 const program = require('commander');
 const Censys = require('../build/censys');
@@ -103,6 +105,25 @@ program
     });
     censys
       .data()
+      .then(res => {
+        console.log(JSON.stringify(res, null, 2));
+      })
+      .catch(err => {
+        console.log(JSON.stringify(err, null, 2));
+      });
+  });
+
+// Data endpoint
+program
+  .command('account')
+  .description('The account endpoint returns information about your Censys account.')
+  .action(() => {
+    censys = new Censys({
+      apiID: process.env.CENSYS_ID || program.apiId,
+      apiSecret: process.env.CENSYS_SECRET || program.apiSecret
+    });
+    censys
+      .account()
       .then(res => {
         console.log(JSON.stringify(res, null, 2));
       })

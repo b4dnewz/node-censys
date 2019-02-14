@@ -1,4 +1,4 @@
-import Censys from '../';
+import Censys from '../lib';
 import nock from 'nock';
 
 const endpoint = nock('https://censys.io/api/v1/');
@@ -9,7 +9,7 @@ let censysOptions = {
   apiSecret: 'password'
 };
 
-describe('Censys', () => {
+describe('Censys Client', () => {
   it('exports a function', () => {
     expect(typeof Censys).toBe('function');
   });
