@@ -54,21 +54,22 @@ const censys = new Censys({
 
 censys.search('ipv4', {
   query: '8.8.8.8'
-}, {}, (err, result) => {})
+}, (err, result) => {
+  // handle error
+  // do something with response
+})
 ```
 
 With promises and async await:
 
 ```js
-censys.search('ipv4', {query: '8.8.8.8'})
-  .then(res => {
-    // do something
-  })
+censys.search('ipv4', {
+  query: '8.8.8.8'
+}).then(console.log)
   .catch(console.log)
 
 (async () => {
-  const res = await censys.search('ipv4', {query: '8.8.8.8'})
-  // do something
+  console.log(await censys.search('ipv4', {query: '8.8.8.8'}));
 })().catch(console.log)
 ```
 
@@ -76,12 +77,14 @@ censys.search('ipv4', {query: '8.8.8.8'})
 
 #### [search](https://censys.io/api/v1/docs/search)
 
-__Signature:__ `search(index, query, options?, callback?)`
+__Signature:__ `search(index, query, callback?)`
 
 The search endpoint allows searches against the current data in the IPv4, Top Million Websites, and Certificates indexes using the same search syntax as the primary site. The endpoint returns a paginated result set of hosts (or websites or certificates) that match the search. Data should be posted as a JSON request document.
 
 ```js
-censys.search('ipv4', {query: '8.8.8.8'}, {}, (err, result) => {
+censys.search('ipv4', {
+  query: '8.8.8.8'
+}, (err, result) => {
   if (err) {
     console.log(err)
     return
@@ -111,7 +114,7 @@ censys.view('ipv4', '8.8.8.8', (err, result) => {
 
 #### [report](https://censys.io/api/v1/docs/report)
 
-__Signature:__ `report(index, options?, callback?)`
+__Signature:__ `report(index, options, callback?)`
 
 The report endpoint allows you to determine the aggregate breakdown of a value for the results a query, similar to the "Build Report" functionality available in the primary search interface. For example, if you wanted to determine the breakdown of cipher suites selected by all websites in the Top Million.
 
