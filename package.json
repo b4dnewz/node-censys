@@ -28,21 +28,24 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.2.2",
+    "@babel/core": "^7.3.4",
     "@babel/node": "^7.2.2",
-    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-env": "^7.3.4",
     "babel-loader": "^8.0.5",
-    "eslint": "^5.13.0",
+    "eslint": "^5.15.1",
     "jest": "^24.1.0",
-    "lint-staged": "^8.1.4",
+    "lint-staged": "^8.1.5",
     "nock": "^10.0.6",
-    "webpack": "^4.29.3",
+    "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3"
   },
   "scripts": {
-    "pretest": "eslint . --fix && npm run build",
+    "pretest": "npm run lint",
     "precommit": "lint-staged",
+    "prepublish": "npm run build",
+    "prebuild": "npm run test",
     "test": "jest --coverage",
+    "lint": "eslint . --fix",
     "build": "webpack",
     "dev": "webpack --watch"
   },
@@ -55,12 +58,16 @@
   "eslintConfig": {
     "extends": "eslint:recommended",
     "env": {
+      "es6": true,
       "jest": true,
       "node": true
     },
     "parserOptions": {
       "ecmaVersion": 6,
-      "sourceType": "module"
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "experimentalObjectRestSpread": true
+      }
     }
   },
   "repository": "b4dnewz/node-censys",
