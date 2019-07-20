@@ -21,7 +21,7 @@ const createInstance = (p) => {
   });
 };
 
-let inst;
+let inst: Censys;
 
 program
   .name("censys")
@@ -47,10 +47,11 @@ program
   .action((index, query, options) => {
     inst = createInstance(program);
     inst
-      .search(index, query, {
+      .search(index, {
         fields: options.fields,
         flatten: options.flatten,
         page: options.page,
+        query,
       })
       .then((res) => {
         log(res);

@@ -20,26 +20,14 @@ Or globally to use it as a cli tool:
 npm install --global censys.io
 ```
 
-Than run the __censys__ command to see the help menu:
+Than you should have __censys__ command available on your path, try it out with the _--help_  menu.
 
 ```
 $ censys --help
-
-Usage: censys [options] [command]
-
-Options:
-  -V, --version                             output the version number
-  --api-id <id>                             The Censys Api ID obtained in your account page.
-  --api-secret <secret>                     The Censys Api Secret obtained in your account page.
-  -h, --help                                output usage information
-
-Commands:
-  search [options] <index> <query>          Searches against Censys indexes using the same search syntax as the main site.
-  view <index> <id>                         Fetches the structured data about a specific host, website, or certificate by host IP address,
-  report [options] <index> <query> <field>  Determine the aggregate breakdown of a value for the results a query.
-  data                                      Exposes metadata on raw data that can be downloaded from Censys.
-  account                                   The account endpoint returns information about your Censys account.
 ```
+
+On the command line tool you can specify the API id and secret as an option before the commands or you can setup environment variables called __CENSYS_ID__ and __CENSYS_SECRET__ that will be used by default.
+
 
 ## Usage
 
@@ -58,7 +46,7 @@ const data = await instance.search('certificates', {
 })
 ```
 
-Also it's build with typescript and comes with generated definitions.
+This project is __typescript__ based and provides the module definitions for a better experience.
 
 ## Methods
 
