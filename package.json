@@ -11,33 +11,33 @@
   "license": "MIT",
   "files": [
     "bin",
-    "build"
+    "lib"
   ],
-  "main": "./build/censys.js",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "bin": {
     "censys": "./bin/index.js"
   },
   "keywords": [
     "censys",
-    "javascript-client",
-    "node-client"
+    "censys-api",
+    "node-client",
+    "cli-tool"
   ],
   "dependencies": {
     "commander": "^2.19.0",
     "node-fetch": "^2.3.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.4",
-    "@babel/node": "^7.2.2",
-    "@babel/preset-env": "^7.3.4",
-    "babel-loader": "^8.0.5",
-    "eslint": "^5.15.1",
+    "@types/jest": "^24.0.15",
+    "@types/nock": "^10.0.3",
+    "@types/node": "^12.6.8",
+    "@types/node-fetch": "^2.3.7",
     "jest": "^24.1.0",
-    "lint-staged": "^8.1.5",
     "nock": "^10.0.6",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.3"
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.3"
   },
   "scripts": {
     "pretest": "npm run lint",
@@ -45,33 +45,8 @@
     "prepublish": "npm run build",
     "prebuild": "npm run test",
     "test": "jest --coverage",
-    "lint": "eslint . --fix",
-    "build": "webpack",
-    "dev": "webpack --watch"
+    "lint": "tslint -p . --fix",
+    "build": "tsc"
   },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ]
-  },
-  "eslintConfig": {
-    "extends": "eslint:recommended",
-    "env": {
-      "es6": true,
-      "jest": true,
-      "node": true
-    },
-    "parserOptions": {
-      "ecmaVersion": 6,
-      "sourceType": "module",
-      "ecmaFeatures": {
-        "experimentalObjectRestSpread": true
-      }
-    }
-  },
-  "repository": "b4dnewz/node-censys",
-  "jest": {
-    "testEnvironment": "node"
-  }
+  "repository": "b4dnewz/node-censys"
 }
