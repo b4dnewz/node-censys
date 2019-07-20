@@ -1,6 +1,5 @@
 language: node_js
 node_js:
-  - v9
-  - v8
-  - v6
+  - "node"
+  - "lts/*"
 after_script: cat ./coverage/lcov.info | coveralls
