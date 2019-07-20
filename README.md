@@ -11,7 +11,7 @@ If you are interested to see the official documentation visit the [Censys.io](ht
 Install it locally to your project to use it as a node module:
 
 ```
-npm install --save censys.io
+npm install censys.io
 ```
 
 Or globally to use it as a cli tool:
@@ -43,124 +43,74 @@ Commands:
 
 ## Usage
 
-The censys client can be used either with promises or callbacks, so all of the examples below will work.
+The censys client is promise based and must be instanciated with the API __id__ and __secret__ obtained from the Censys website, like the example below.
 
 ```js
-const Censys = require('censys.io')
-const censys = new Censys({
-  apiID: '',
-  apiSecret: ''
+import Censys from 'censys.io'
+
+const instance = new Censys({
+  apiID: '<your-api-id>',
+  apiSecret: '<your-api-secret>'
 })
 
-censys.search('ipv4', {
-  query: '8.8.8.8'
-}, (err, result) => {
-  // handle error
-  // do something with response
+const data = await instance.search('certificates', {
+  query: '80.http.get.headers.server: nginx'
 })
 ```
 
-With promises and async await:
-
-```js
-censys.search('ipv4', {
-  query: '8.8.8.8'
-}).then(console.log)
-  .catch(console.log)
-
-(async () => {
-  console.log(await censys.search('ipv4', {query: '8.8.8.8'}));
-})().catch(console.log)
-```
+Also it's build with typescript and comes with generated definitions.
 
 ## Methods
 
 #### [search](https://censys.io/api/v1/docs/search)
 
-__Signature:__ `search(index, query, callback?)`
-
 The search endpoint allows searches against the current data in the IPv4, Top Million Websites, and Certificates indexes using the same search syntax as the primary site. The endpoint returns a paginated result set of hosts (or websites or certificates) that match the search. Data should be posted as a JSON request document.
 
 ```js
-censys.search('ipv4', {
+const data = await censys.search('ipv4', {
   query: '8.8.8.8'
-}, (err, result) => {
-  if (err) {
-    console.log(err)
-    return
-  }
-
-  console.log(result)
-})
+});
+console.log(data);
 ```
 
 #### [view](https://censys.io/api/v1/docs/view)
-
-__Signature:__ `view(index, id, callback?)`
 
 The view endpoint fetches the structured data we have about a specific host, website, or certificate once you know the host's IP address, website's domain, or certificate's SHA-256 fingerprint.
 report
 
 ```js
-censys.view('ipv4', '8.8.8.8', (err, result) => {
-  if (err) {
-    console.log(err)
-    return
-  }
-
-  console.log(result)
-})
+const data = await censys.view('websites', 'google.com');
+console.log(data);
 ```
 
 #### [report](https://censys.io/api/v1/docs/report)
 
-__Signature:__ `report(index, options, callback?)`
-
 The report endpoint allows you to determine the aggregate breakdown of a value for the results a query, similar to the "Build Report" functionality available in the primary search interface. For example, if you wanted to determine the breakdown of cipher suites selected by all websites in the Top Million.
 
 ```js
-censys.report('ipv4', {}, (err, result) => {
-  if (err) {
-    console.log(err)
-    return
-  }
-
-  console.log(result)
-})
+const data = censys.report('ipv4', {
+  query: '80.http.get.headers.server: nginx',
+  field: 'location.country_code'
+});
+console.log(data);
 ```
 
 #### [data](https://censys.io/api/v1/docs/data)
 
-__Signature:__ `data(callback?)`
-
 The Get Series endpoint returns a data on the types of scans we regularly perform ("series").
 
 ```js
-censys.data((err, result) => {
-  if (err) {
-    console.log(err)
-    return
-  }
-
-  console.log(result)
-})
+const data = await censys.data();
+console.log(data);
 ```
 
 #### [account](https://censys.io/api/v1/docs/account)
 
-__Signature:__ `account(callback?)`
-
 The account endpoint returns information about your Censys account.
 
 ```js
-censys.account((err, result) => {
-  if (err) {
-    console.log(err)
-    return
-  }
-
-  console.log(result)
-})
+const data = await censys.account();
+console.log(data);
 ```
 
 ---

@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "outDir": "./lib",
+    "target": "es5",
+    "declaration": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "removeComments": true
+  },
+  "include": [
+    "./src/**/*"
+  ]
+}
